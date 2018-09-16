@@ -41,6 +41,6 @@ class View:
         while data != "salir":
             data = self.c.record_audio
             if data != "salir" and data != "":
-                self.c.jarvis(data)
+                self.c.assistant(data)
             elif data == "salir":
                 self.root.destroy()

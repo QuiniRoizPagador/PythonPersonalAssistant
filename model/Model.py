@@ -8,7 +8,7 @@ class Model:
         self.jarvis.set_name(name)
 
     def jarvis(self, data):
-        self.jarvis.jarvis(data)
+        self.jarvis.assistant(data)
 
     def record_audio(self):
         return self.jarvis.record_audio

@@ -13,4 +13,4 @@ class Controller:
         return self.Mod.record_audio
 
     def jarvis(self, data):
-        return self.Mod.jarvis(data)
+        return self.Mod.assistant(data)

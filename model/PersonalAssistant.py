@@ -48,7 +48,7 @@ class Jarvis:
         res = os.popen("start audio.mp3")
         res.close()
 
-    def jarvis(self, data):
+    def assistant(self, data):
         if "cómo estás" in data:
             self.speak("Genial, gracias.")
         if "qué hora es" in data:
