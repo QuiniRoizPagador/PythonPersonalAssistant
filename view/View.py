@@ -33,10 +33,13 @@ class View:
 
     def run_assistant(self):
         self.root.withdraw()
-        self.c.speak("Hola, " + self.name.get() + ". ¿Qué puedo hacer por ti?")
+        name = self.name.get()
+        self.c.set_name(name)
+        self.c.speak("Hola, " + name + ". ¿Qué puedo hacer por ti?")
+
         data = ""
         while data != "salir":
-            data = self.c.record_audio()
+            data = self.c.record_audio
             if data != "salir" and data != "":
                 self.c.jarvis(data)
             elif data == "salir":
