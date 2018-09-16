@@ -1,9 +1,9 @@
-from model.personal_assistant.PersonalAssistant import Jarvis
+from model.personal_assistant.PersonalAssistant import PersonalAssistant
 
 
 class Model:
     def __init__(self):
-        self.jarvis = Jarvis()
+        self.jarvis = PersonalAssistant()
 
     def jarvis(self, data):
         self.jarvis.jarvis(data)
