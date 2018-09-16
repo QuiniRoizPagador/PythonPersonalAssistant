@@ -1,4 +1,4 @@
-from model.personalAssistant.PersonalAssistant import Jarvis
+from model.personal_assistant.PersonalAssistant import Jarvis
 
 
 class Model:
