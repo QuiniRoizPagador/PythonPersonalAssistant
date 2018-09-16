@@ -9,7 +9,7 @@ class Model:
         self.jarvis.jarvis(data)
 
     def record_audio(self):
-        return self.jarvis.record_audio()
+        return self.jarvis.record_audio
 
     def speak(self, data):
         return self.jarvis.speak(data)

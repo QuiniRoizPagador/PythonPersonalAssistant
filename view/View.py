@@ -36,7 +36,7 @@ class View:
         self.c.speak("Hola, " + self.name.get() + ". ¿Qué puedo hacer por ti?")
         data = ""
         while data != "salir":
-            data = self.c.record_audio()
+            data = self.c.record_audio
             if data != "salir" and data != "":
                 self.c.jarvis(data)
             elif data == "salir":
