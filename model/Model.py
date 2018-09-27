@@ -1,17 +1,19 @@
-from model import PersonalAssistant
+import model.PersonalAssistant as Pa
 
-class Model:
+
+class Model(object):
+
     def __init__(self):
-        self.jarvis = PersonalAssistant()
+        self.__jarvis = Pa.PersonalAssistant()
 
     def set_name(self, name):
-        self.jarvis.set_name(name)
+        self.__jarvis.set_name(name)
 
-    def jarvis(self, data):
-        self.jarvis.assistant(data)
+    def assistant(self, data):
+        self.__jarvis.assistant(data)
 
     def record_audio(self):
-        return self.jarvis.record_audio
+        return self.__jarvis.record_audio()
 
     def speak(self, data):
-        return self.jarvis.speak(data)
+        return self.__jarvis.speak(data)

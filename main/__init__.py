@@ -1,12 +1,6 @@
-from controller.Controller import Controller
-from view.View import View
-from model.Model import Model
+import view.View as View
 
-m = Model()
-view = View()
-cont = Controller(m)
-view.put_controller(cont)
-
+view = View.View()
 view.run()
 
 

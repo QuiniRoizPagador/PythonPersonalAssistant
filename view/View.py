@@ -1,46 +1,47 @@
+import model.Memory as Memory
+import controller.Controller as Controller
 import threading
 from tkinter import *
 
 
-class View:
+class View(object):
 
     def __init__(self):
-        self.name = ""
-
-    def put_controller(self, controller):
-        self.c = controller
+        self.__controller = Controller.Controller()
+        self.__name = None
+        self.__root = None
 
     def run(self):
-        self.root = Tk()
+        self.__root = Tk()
 
         var = StringVar()
-        label = Label(self.root, textvariable=var, relief=RAISED)
+        label = Label(self.__root, textvariable=var, relief=RAISED)
 
         var.set("Comencemos. ¿Cómo te llamas?")
         label.pack()
 
-        self.name = Entry(self.root, bd=5)
-        self.name.pack(side = LEFT)
+        self.__name = Entry(self.__root, bd=5)
+        self.__name.pack(side=LEFT)
 
-        b = Button(self.root, text="ok", command = self.verify_name)
+        b = Button(self.__root, text="ok", command = self.verify_name)
         b.pack()
 
-        self.root.mainloop()
+        self.__root.mainloop()
 
     def verify_name(self):
-            if self.name.get() != "":
-                threading.Thread(target =self.run_assistant).start()
+            if self.__name.get() != "":
+                threading.Thread(target=self.run_assistant(self.__name.get())).start()
 
-    def run_assistant(self):
-        self.root.withdraw()
-        name = self.name.get()
-        self.c.set_name(name)
-        self.c.speak("Hola, " + name + ". ¿Qué puedo hacer por ti?")
+    def run_assistant(self, name):
+        self.__root.withdraw()
+        Memory.Memory()
+        self.__controller.set_name(name)
+        self.__controller.speak("Hola, " + name + ". ¿Qué puedo hacer por ti?")
 
         data = ""
         while data != "salir":
-            data = self.c.record_audio
+            data = self.__controller.record_audio()
             if data != "salir" and data != "":
-                self.c.assistant(data)
+                self.__controller.assistant(data)
             elif data == "salir":
-                self.root.destroy()
+                self.__root.destroy()

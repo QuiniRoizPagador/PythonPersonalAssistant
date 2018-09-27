@@ -1,16 +1,20 @@
-class Controller:
+import model.Model as Model
 
-    def __init__(self, model):
-        self.Mod = model
+
+class Controller(object):
+
+    def __init__(self):
+        self.__mod = Model.Model()
+        self.__name = ""
 
     def set_name(self, name):
-        self.Mod.set_name(name)
+        self.__name = name
 
     def speak(self, data):
-        self.Mod.speak(data)
+        self.__mod.speak(data)
 
     def record_audio(self):
-        return self.Mod.record_audio
+        return self.__mod.record_audio()
 
-    def jarvis(self, data):
-        return self.Mod.assistant(data)
+    def assistant(self, data):
+        return self.__mod.assistant(data)

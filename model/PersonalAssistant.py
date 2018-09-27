@@ -1,19 +1,18 @@
-import datetime
+
 import os
 import speech_recognition as sr
 from gtts import gTTS
+import model.Memory as Memory
 
 
-class Jarvis:
+class PersonalAssistant(object):
 
     def __init__(self):
-        super()
+        self.__name = ""
+        self._memory = Memory.Memory()
 
-    def __init__(self, name):
-        self.set_name(name)
-
-    def set_name(self, name):
-        self.name = name
+    def set_name(self, n):
+        self.__name = n
 
     def record_audio(self):
         """
@@ -24,7 +23,7 @@ class Jarvis:
         """
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            print("Te escucho, " + self.name + "...")
+            print("Te escucho, " + self.__name + "...")
             audio = r.listen(source, timeout=100)
         data = ""
         try:
@@ -42,17 +41,16 @@ class Jarvis:
         el dispositivo en el que se ejecute la aplicación.
         :param audio_string: audio a reproducir.
         """
-        print(audio_string)
-        tts = gTTS(text=audio_string, lang='es-es')
-        tts.save("audio.mp3")
-        res = os.popen("start audio.mp3")
-        res.close()
+        try:
+            print(audio_string)
+            tts = gTTS(text=audio_string, lang='es-es')
+            tts.save("audio.mp3")
+            res = os.popen("start audio.mp3")
+            res.close()
+        except Exception as e:
+            print(e)
 
     def assistant(self, data):
-        if "cómo estás" in data:
-            self.speak("Genial, gracias.")
-        if "qué hora es" in data:
-            now = datetime.datetime.now()
-            self.peak("Son las " + now.hour + " " + now.minute)
-        if "quién eres" in data:
-            self.speak("hola, soy tu asistente personal.")
+        str = self._memory.get_response(data)
+        self.speak(str)
+
